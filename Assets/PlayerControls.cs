@@ -62,6 +62,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""c37579a7-c5ba-4a9e-a445-3e4d6323d9d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +117,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""MoveDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c75e1e36-00a9-4d36-ad92-563dcdd962bb"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -126,6 +146,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_KeyboardMouse_MoveDown = m_KeyboardMouse.FindAction("MoveDown", throwIfNotFound: true);
         m_KeyboardMouse_MoveLeft = m_KeyboardMouse.FindAction("MoveLeft", throwIfNotFound: true);
         m_KeyboardMouse_MoveRight = m_KeyboardMouse.FindAction("MoveRight", throwIfNotFound: true);
+        m_KeyboardMouse_Throw = m_KeyboardMouse.FindAction("Throw", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -189,6 +210,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_KeyboardMouse_MoveDown;
     private readonly InputAction m_KeyboardMouse_MoveLeft;
     private readonly InputAction m_KeyboardMouse_MoveRight;
+    private readonly InputAction m_KeyboardMouse_Throw;
     public struct KeyboardMouseActions
     {
         private @PlayerControls m_Wrapper;
@@ -197,6 +219,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MoveDown => m_Wrapper.m_KeyboardMouse_MoveDown;
         public InputAction @MoveLeft => m_Wrapper.m_KeyboardMouse_MoveLeft;
         public InputAction @MoveRight => m_Wrapper.m_KeyboardMouse_MoveRight;
+        public InputAction @Throw => m_Wrapper.m_KeyboardMouse_Throw;
         public InputActionMap Get() { return m_Wrapper.m_KeyboardMouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -218,6 +241,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MoveRight.started -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnMoveRight;
                 @MoveRight.performed -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnMoveRight;
                 @MoveRight.canceled -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnMoveRight;
+                @Throw.started -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnThrow;
+                @Throw.performed -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnThrow;
+                @Throw.canceled -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnThrow;
             }
             m_Wrapper.m_KeyboardMouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -234,6 +260,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MoveRight.started += instance.OnMoveRight;
                 @MoveRight.performed += instance.OnMoveRight;
                 @MoveRight.canceled += instance.OnMoveRight;
+                @Throw.started += instance.OnThrow;
+                @Throw.performed += instance.OnThrow;
+                @Throw.canceled += instance.OnThrow;
             }
         }
     }
@@ -253,5 +282,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMoveDown(InputAction.CallbackContext context);
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
     }
 }

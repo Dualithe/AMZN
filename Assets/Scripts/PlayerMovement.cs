@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,52 +8,20 @@ public class PlayerMovement : MonoBehaviour, IKnockbackable
     private Rigidbody2D rb;
     private Animator animator;
     [SerializeField] private float playerSpeed;
+    [SerializeField] private InputHandler ih;
     Vector2 moveDirection = Vector2.zero;
-    public PlayerControls inputActions;
-    public InputAction MoveUp;
-    public InputAction MoveDown;
-    public InputAction MoveLeft;
-    public InputAction MoveRight;
-
-
-    private void Awake()
-    {
-        inputActions = new PlayerControls();
-    }
-
-    private void OnEnable()
-    {
-        MoveUp = inputActions.KeyboardMouse.MoveUp;
-        MoveUp.Enable();
-
-        MoveDown = inputActions.KeyboardMouse.MoveDown;
-        MoveDown.Enable();
-
-        MoveLeft = inputActions.KeyboardMouse.MoveLeft;
-        MoveLeft.Enable();
-
-        MoveRight = inputActions.KeyboardMouse.MoveRight;
-        MoveRight.Enable();
-    }
-
-    private void OnDisable()
-    {
-        MoveUp.Disable();
-        MoveDown.Disable();
-        MoveLeft.Disable();
-        MoveRight.Disable();
-    }
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        ih = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
         player = gameObject;
     }
 
     private void FixedUpdate()
     {
-        moveDirection = new Vector2(MoveRight.ReadValue<float>() - MoveLeft.ReadValue<float>(), MoveUp.ReadValue<float>() - MoveDown.ReadValue<float>());
+        moveDirection = new Vector2(ih.MoveRight.ReadValue<float>() - ih.MoveLeft.ReadValue<float>(), ih.MoveUp.ReadValue<float>() - ih.MoveDown.ReadValue<float>());
 
         if (moveDirection.x < 0)
         {
