@@ -8,24 +8,23 @@ public class BoxScript : MonoBehaviour, IKnockbackable
     public Rigidbody2D body => rb;
     private bool attached = false;
     private GameObject attachedTo = null;
+    private GameObject player;
     public float attachCD;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player");
+    }
+    public void pickMeUp()
+    {
+        player.gameObject.GetComponent<PlayerThrowable>().currBox = this;
+        transform.parent = player.transform;
+        GetComponent<Collider2D>().isTrigger = true;
+        attached = true;
+        attachedTo = player.gameObject;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<PlayerThrowable>().currBox == null && attachCD == 0)
-        {
-            collision.gameObject.GetComponent<PlayerThrowable>().currBox = this;
-            transform.parent = collision.transform;
-            GetComponent<Collider2D>().isTrigger = true;
-            attached = true;
-            attachedTo = collision.gameObject;
-        }
-    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         GetComponent<Collider2D>().isTrigger = false;

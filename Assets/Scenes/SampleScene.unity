@@ -207,6 +207,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &622503962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 622503964}
+  - component: {fileID: 622503963}
+  m_Layer: 0
+  m_Name: ShelfTemplate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &622503963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622503962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1240e6e292f292c4088c80f2f498c4b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &622503964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622503962}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.44160086, y: 0.5076733, z: 0.070520185}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &639895030 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5390853326817833791, guid: 8cd03f82669e56b4683f1c85b8778d08, type: 3}
@@ -280,86 +324,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 639895030}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: Throw.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveUp.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveDown.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveLeft.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveRight.m_SingletonActionBindings.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: Throw.m_SingletonActionBindings.Array.data[0].m_Id
-      value: 2698a99e-f27c-4503-811e-94337af6943a
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveUp.m_SingletonActionBindings.Array.data[0].m_Id
-      value: 1bf9aaf7-aa28-4294-a11d-4cb1ced0c6b2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: Throw.m_SingletonActionBindings.Array.data[0].m_Path
-      value: <Mouse>/leftButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveDown.m_SingletonActionBindings.Array.data[0].m_Id
-      value: e907f974-e9fe-4679-a1aa-15a630b8ebd7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveLeft.m_SingletonActionBindings.Array.data[0].m_Id
-      value: e0d4dc72-940e-408a-9fe9-49fa1fd3f507
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveUp.m_SingletonActionBindings.Array.data[0].m_Path
-      value: <Keyboard>/w
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveRight.m_SingletonActionBindings.Array.data[0].m_Id
-      value: 9f91d403-fb78-4903-b8ea-54d655146b2f
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: Throw.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Throw
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveDown.m_SingletonActionBindings.Array.data[0].m_Path
-      value: <Keyboard>/s
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveLeft.m_SingletonActionBindings.Array.data[0].m_Path
-      value: <Keyboard>/a
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveUp.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Move Up
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveRight.m_SingletonActionBindings.Array.data[0].m_Path
-      value: <Keyboard>/d
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveDown.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Move Down
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveLeft.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Move Left
-      objectReference: {fileID: 0}
-    - target: {fileID: 5156671684266500166, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
-      propertyPath: MoveRight.m_SingletonActionBindings.Array.data[0].m_Action
-      value: Move Right
-      objectReference: {fileID: 0}
     - target: {fileID: 5471972439509896212, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -410,6 +374,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
+--- !u!1001 &6190767017545793799
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2838625718219868372, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: shelfTemplate
+      value: 
+      objectReference: {fileID: 622503963}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.44160086
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5076733
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.070520185
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5964108000823153883, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: m_Name
+      value: Shelf
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
 --- !u!1001 &7772118849554510044
 PrefabInstance:
   m_ObjectHideFlags: 0

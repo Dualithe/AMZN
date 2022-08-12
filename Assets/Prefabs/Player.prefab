@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 8264679579654301324}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,4 +270,5 @@ MonoBehaviour:
   currBox: {fileID: 0}
   range: 5
   throwForce: 20
+  pickupRange: 2
   rangeIndicator: {fileID: 2235250496221347143}

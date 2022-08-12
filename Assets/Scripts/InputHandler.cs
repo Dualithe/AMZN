@@ -10,6 +10,7 @@ public class InputHandler : MonoBehaviour
     public InputAction MoveLeft;
     public InputAction MoveRight;
     public InputAction Throw;
+    public InputAction Pickup;
 
     private void Awake()
     {
@@ -30,6 +31,10 @@ public class InputHandler : MonoBehaviour
         MoveRight = inputActions.KeyboardMouse.MoveRight;
         MoveRight.Enable();
 
+        Pickup = inputActions.KeyboardMouse.Pickup;
+        Pickup.Enable();
+        Pickup.performed += player.GetComponent<PlayerThrowable>().performPickup;
+
         Throw = inputActions.KeyboardMouse.Throw;
         Throw.Enable();
         Throw.started += player.GetComponent<PlayerThrowable>().performAim;
@@ -43,5 +48,9 @@ public class InputHandler : MonoBehaviour
         MoveLeft.Disable();
         MoveRight.Disable();
         Throw.Disable();
+        Pickup.Disable();
+        Throw.started -= player.GetComponent<PlayerThrowable>().performAim;
+        Throw.canceled -= player.GetComponent<PlayerThrowable>().performThrow;
+        Pickup.performed -= player.GetComponent<PlayerThrowable>().performPickup;
     }
 }
