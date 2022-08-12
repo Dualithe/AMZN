@@ -85,4 +85,9 @@ public class PlayerMovement : MonoBehaviour, IKnockbackable
     {
         animator.SetBool("IsHolding", ih);
     }
+
+    public void Knockback(Vector2 dir, float force)
+    {
+        rb.AddForce(dir * force, ForceMode2D.Impulse);
+    }
 }
