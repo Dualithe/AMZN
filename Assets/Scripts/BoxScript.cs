@@ -10,6 +10,7 @@ public class BoxScript : MonoBehaviour, IKnockbackable
     private GameObject attachedTo = null;
     private GameObject player;
     public float attachCD;
+    private bool isDestroyed = false;
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class BoxScript : MonoBehaviour, IKnockbackable
     {
         if (collision.tag == "Player")
         {
-        GetComponent<Collider2D>().isTrigger = false;
+            GetComponent<Collider2D>().isTrigger = false;
         }
     }
 
@@ -55,5 +56,15 @@ public class BoxScript : MonoBehaviour, IKnockbackable
         attachedTo.gameObject.GetComponent<PlayerThrowable>().currBox = null;
         attachedTo = null;
         transform.parent = null;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var shelfModule = collision.gameObject.GetComponent<ShelfModule>();
+        if (collision.transform.tag == "ShelfModule" && !shelfModule.isFilled && !isDestroyed)
+        {
+            isDestroyed = true;
+            shelfModule.fill(gameObject);
+        }
     }
 }

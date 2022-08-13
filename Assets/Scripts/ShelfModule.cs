@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class ShelfModule : MonoBehaviour
 {
-    bool isFilled = false;
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public bool isFilled = false;
+    public void fill(GameObject box)
     {
-        if (collision.transform.tag == "Box")
-        {
-            isFilled = true;
-            Destroy(collision.gameObject);
-            var x = Color.cyan;
-            x.a = 0.8f;
-            GetComponent<SpriteRenderer>().color = x;
-        }
+
+        isFilled = true;
+        Destroy(box);
+        var x = Color.cyan;
+        x.a = 0.8f;
+        GetComponent<SpriteRenderer>().color = x;
     }
 }

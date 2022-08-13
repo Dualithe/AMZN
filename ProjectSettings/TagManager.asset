@@ -8,6 +8,7 @@ TagManager:
   - Box
   - Lever
   - PressurePlate
+  - ShelfModule
   layers:
   - Default
   - TransparentFX

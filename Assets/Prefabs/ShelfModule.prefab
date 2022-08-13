@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3482968887591353082}
   m_Layer: 11
   m_Name: ShelfModule
-  m_TagString: Untagged
+  m_TagString: ShelfModule
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06488b1ce34987f4e82ccde612ae2903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFilled: 0
 --- !u!61 &-6874535988280307918
 BoxCollider2D:
   m_ObjectHideFlags: 0
