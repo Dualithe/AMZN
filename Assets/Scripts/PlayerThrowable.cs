@@ -9,24 +9,31 @@ public class PlayerThrowable : MonoBehaviour
     [SerializeField] private float pickupRange;
     [SerializeField] private GameObject rangeIndicator;
     private Vector2 throwDir = Vector2.zero;
+    private PlayerMovement pm;
+
+    private void Start()
+    {
+        pm = GetComponent<PlayerMovement>();
+    }
 
     public void performAim(InputAction.CallbackContext context)
     {
         if (currBox != null)
         {
             rangeIndicator.SetActive(true);
-            throwDir = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
         }
     }
     public void performThrow(InputAction.CallbackContext context)
     {
         if (currBox != null)
         {
+            throwDir = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
             var x = currBox;
             currBox.clearAttached();
             x.attachCD = 0.2f;
             x.Knockback(throwDir, throwForce);
             rangeIndicator.SetActive(false);
+            pm.isHolding(false);
         }
     }
 
@@ -48,6 +55,7 @@ public class PlayerThrowable : MonoBehaviour
         if (closest.magnitude < pickupRange)
         {
             closestBox.GetComponent<BoxScript>().pickMeUp();
+            pm.isHolding(true);
         }
     }
 }
