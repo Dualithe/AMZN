@@ -6,6 +6,8 @@ TagManager:
   tags:
   - InputHandler
   - Box
+  - Lever
+  - PressurePlate
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - MapBorder
   - Shelf
   - ShelfModule
-  - 
+  - PressurePlate
   - 
   - 
   - 
