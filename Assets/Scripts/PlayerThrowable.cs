@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Threading.Tasks;
 
 public class PlayerThrowable : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class PlayerThrowable : MonoBehaviour
     [SerializeField] private float pickupRange;
     [SerializeField] private GameObject rangeIndicator;
     private Vector2 throwDir = Vector2.zero;
-    private PlayerMovement pm;
+    public PlayerMovement pm;
 
     private void Start()
     {
@@ -27,15 +28,19 @@ public class PlayerThrowable : MonoBehaviour
     {
         if (currBox != null)
         {
-            throwDir = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position).normalized;
+            throwDir = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position);
             var x = currBox;
             currBox.clearAttached();
             x.attachCD = 0.2f;
-            x.Knockback(throwDir, throwForce);
+            x.Knockback(throwDir.normalized, throwForce);
+            x.gameObject.layer += 1;
+            x.called = false;
+            x.collisionCD = 0.2f;
             rangeIndicator.SetActive(false);
             pm.isHolding(false);
         }
     }
+
 
     public void performPickup(InputAction.CallbackContext context)
     {

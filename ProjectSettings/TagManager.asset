@@ -19,11 +19,11 @@ TagManager:
   - Player
   - Bot
   - Box
-  - MapBorder
+  - BoxAfterThrow
   - Shelf
   - ShelfModule
   - PressurePlate
-  - 
+  - MapBorder
   - 
   - 
   - 

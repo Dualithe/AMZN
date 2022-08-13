@@ -271,7 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currBox: {fileID: 0}
   range: 5
-  throwForce: 20
+  throwForce: 10
   pickupRange: 2
   rangeIndicator: {fileID: 2235250496221347143}
 --- !u!1 &9208275330158888344
