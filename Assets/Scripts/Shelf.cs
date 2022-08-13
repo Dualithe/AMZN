@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    [SerializeField] private ShelfTemplate shelfTemplate;
     [SerializeField] private ShelfModule module;
     public enum ShelfShapeType { Single, Double, TripleLine, TripleLShape, QuadrupleLine, QuadrupleSquare, QuadrupleLLeft, QuadrupleLRight, QuadrupleSLeft, QuadrupleSRight, QuadrupleTShape }
     [SerializeField] private ShelfShapeType shelfType;
@@ -11,7 +10,7 @@ public class Shelf : MonoBehaviour
     private void Start()
     {
         Vector2 pos = transform.position;
-        var shapeCoordinates = shelfTemplate.getShapeInfo(shelfType);
+        var shapeCoordinates = ShelfTemplates.getShapeInfo(shelfType);
 
         for (int i = 0; i < shapeCoordinates.Count; i++)
         {
@@ -22,7 +21,7 @@ public class Shelf : MonoBehaviour
     private void OnDrawGizmos()
     {
         Vector2 pos = transform.position;
-        var shapeCoordinates = shelfTemplate.getShapeInfo(shelfType);
+        var shapeCoordinates = ShelfTemplates.getShapeInfo(shelfType);
 
         for (int i = 0; i < shapeCoordinates.Count; i++)
         {
