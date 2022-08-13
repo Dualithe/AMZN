@@ -44,6 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a7d90d0c8c4634b9d61f1ac1543508, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shelfTemplate: {fileID: 0}
   module: {fileID: 2036927488438312575, guid: f5509907cae8c8347be300e59941d0f9, type: 3}
   shelfType: 0
