@@ -720,7 +720,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2838625718219868372, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
       propertyPath: shelfType
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2838625718219868372, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
       propertyPath: shelfTemplate
@@ -732,15 +732,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.44160086
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5076733
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.070520185
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523492728288682141, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
       propertyPath: m_LocalRotation.w

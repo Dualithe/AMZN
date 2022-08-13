@@ -10,22 +10,24 @@ public class Shelf : MonoBehaviour
 
     private void Start()
     {
+        Vector2 pos = transform.position;
         var shapeCoordinates = shelfTemplate.getShapeInfo(shelfType);
 
         for (int i = 0; i < shapeCoordinates.Count; i++)
         {
-            Instantiate(module, shapeCoordinates[i], Quaternion.identity);
+            Instantiate(module, pos + shapeCoordinates[i], Quaternion.identity);
         }
     }
 
     private void OnDrawGizmos()
     {
+        Vector2 pos = transform.position;
         var shapeCoordinates = shelfTemplate.getShapeInfo(shelfType);
 
         for (int i = 0; i < shapeCoordinates.Count; i++)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireCube(shapeCoordinates[i], Vector3.one);
+            Gizmos.DrawWireCube(pos + shapeCoordinates[i], Vector3.one);
         }
     }
 }
