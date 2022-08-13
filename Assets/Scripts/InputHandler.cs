@@ -49,8 +49,11 @@ public class InputHandler : MonoBehaviour
         MoveRight.Disable();
         Throw.Disable();
         Pickup.Disable();
-        Throw.started -= player.GetComponent<PlayerThrowable>().performAim;
-        Throw.canceled -= player.GetComponent<PlayerThrowable>().performThrow;
-        Pickup.performed -= player.GetComponent<PlayerThrowable>().performPickup;
+        if (player != null)
+        {
+            Throw.started -= player.GetComponent<PlayerThrowable>().performAim;
+            Throw.canceled -= player.GetComponent<PlayerThrowable>().performThrow;
+            Pickup.performed -= player.GetComponent<PlayerThrowable>().performPickup;
+        }
     }
 }
