@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ShelfModule : MonoBehaviour
 {
+    [SerializeField] private Sprite spriteFilled;
     public bool isFilled = false;
+
     public void fill(GameObject box)
     {
 
         isFilled = true;
         Destroy(box);
-        var x = Color.cyan;
-        x.a = 0.8f;
-        GetComponent<SpriteRenderer>().color = x;
+        GetComponent<SpriteRenderer>().sprite = spriteFilled;
     }
 }

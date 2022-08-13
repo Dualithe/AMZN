@@ -40,7 +40,7 @@ public class BoxScript : MonoBehaviour, IKnockbackable
 
         if (attached)
         {
-            transform.position = attachedTo.transform.position + new Vector3(0, 0.7f);
+            transform.position = attachedTo.transform.position + new Vector3(0, 1f);
         }
     }
 
