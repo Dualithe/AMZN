@@ -27,7 +27,10 @@ public class BoxScript : MonoBehaviour, IKnockbackable
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.tag == "Player")
+        {
         GetComponent<Collider2D>().isTrigger = false;
+        }
     }
 
     private void Update()
