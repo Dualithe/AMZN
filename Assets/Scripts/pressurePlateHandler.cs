@@ -23,14 +23,13 @@ public class pressurePlateHandler : MonoBehaviour
             spawnBox();
         }
         colliding = true;
-        //animator.SetBool("isColliding", true);
+        animator.SetBool("IsOn", false);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         cd = spawnBoxCooldown;
         colliding = false;
-        //animator.SetBool("isColliding", false);
     }
 
     private void Update()
@@ -54,5 +53,10 @@ public class pressurePlateHandler : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, spawnBoxRange);
+    }
+
+    public void setOn()
+    {
+        animator.SetBool("IsOn", true);
     }
 }
