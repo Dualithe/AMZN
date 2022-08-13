@@ -17,4 +17,15 @@ public class Shelf : MonoBehaviour
             Instantiate(module, shapeCoordinates[i], Quaternion.identity);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        var shapeCoordinates = shelfTemplate.getShapeInfo(shelfType);
+
+        for (int i = 0; i < shapeCoordinates.Count; i++)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(shapeCoordinates[i], Vector3.one);
+        }
+    }
 }

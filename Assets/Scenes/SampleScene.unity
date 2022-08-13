@@ -719,6 +719,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2838625718219868372, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
+      propertyPath: shelfType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2838625718219868372, guid: 8e69ca1677b3d8846b819ee81b5732bd, type: 3}
       propertyPath: shelfTemplate
       value: 
       objectReference: {fileID: 622503963}
