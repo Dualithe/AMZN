@@ -7,7 +7,6 @@ public class pressurePlateHandler : MonoBehaviour
     [SerializeField] float spawnBoxCooldown;
     [SerializeField] float spawnBoxRange;
     [SerializeField] Animator animator;
-    [SerializeField] GameObject box;
     private float cd;
     private bool colliding = false;
 
@@ -45,9 +44,9 @@ public class pressurePlateHandler : MonoBehaviour
     {
         var spawnAngle = Random.Range(0, 2 * Mathf.PI);
         var spawnDistance = Random.Range(0, spawnBoxRange);
-        Vector2 thisPos = transform.position;
         Vector2 spawnVec = new Vector2(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle));
-        Instantiate(box, ((spawnVec * spawnDistance) + thisPos), Quaternion.identity);
+        Level.Current.SpawnBox((Vector2)transform.position + spawnVec * spawnDistance);
+        // Instantiate(box, ((spawnVec * spawnDistance) + thisPos), Quaternion.identity);
     }
     private void OnDrawGizmos()
     {

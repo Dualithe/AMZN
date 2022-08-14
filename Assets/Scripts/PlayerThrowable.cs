@@ -4,63 +4,72 @@ using System.Threading.Tasks;
 
 public class PlayerThrowable : MonoBehaviour
 {
-    public BoxScript currBox = null;
-    [SerializeField] private float range;
     [SerializeField] private float throwForce;
     [SerializeField] private float pickupRange;
+    
+    [Space]
     [SerializeField] private GameObject rangeIndicator;
-    private Vector2 throwDir = Vector2.zero;
-    public PlayerMovement pm;
+    [SerializeField] private Transform hands;
+    [SerializeField] private Transform boxHandler;
+    private BoxScript pickedUpBox = null;
 
-    private void Start()
-    {
-        pm = GetComponent<PlayerMovement>();
+    private void Start() {
+        hands.gameObject.SetActive(false);
+    }
+
+    public void PickupBox(BoxScript box) {
+        pickedUpBox = box;
+        hands.gameObject.SetActive(true);
+        box.GetComponent<Collider2D>().enabled = false;
+        box.body.velocity = Vector2.zero;
+        Level.Current.MoveBox(box, boxHandler);
+        box.transform.localPosition = Vector3.zero;
+        box.body.isKinematic = true;
+    }
+
+    public void ThrowBox(Vector2 velocity) {
+        hands.gameObject.SetActive(false);
+        var box = pickedUpBox;
+        box.body.isKinematic = false;
+        pickedUpBox = null;
+        Level.Current.ReturnBox(box);
+        box.GetComponent<Collider2D>().enabled = true;
+        box.body.velocity = velocity;
+
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), box.GetComponent<Collider2D>(), true);
+        Timer.StartOneshotTimer(this, 0.3f, () => {
+            if (box != null) {
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), box.GetComponent<Collider2D>(), false);
+            }
+        });
     }
 
     public void performAim(InputAction.CallbackContext context)
     {
-        if (currBox != null)
-        {
+        if (pickedUpBox != null) {
             rangeIndicator.SetActive(true);
         }
     }
     public void performThrow(InputAction.CallbackContext context)
     {
-        if (currBox != null)
+        if (pickedUpBox != null)
         {
-            throwDir = (Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position);
-            var x = currBox;
-            currBox.clearAttached();
-            x.attachCD = 0.2f;
-            x.Knockback(throwDir.normalized, throwForce);
-            x.gameObject.layer += 1;
-            x.called = false;
-            x.collisionCD = 0.2f;
-            rangeIndicator.SetActive(false);
-            pm.isHolding(false);
+            var throwDir = (Vector2)Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - (Vector2)boxHandler.position;
+            var throwVelocity = throwDir.normalized * throwForce;
+
+            ThrowBox(throwVelocity);
         }
     }
 
-
     public void performPickup(InputAction.CallbackContext context)
     {
-        var g = GameObject.FindGameObjectsWithTag("Box");
-        var currPos = transform.position;
-        var closest = Vector2.positiveInfinity;
-        GameObject closestBox = null;
-        foreach (GameObject box in g)
-        {
-            Vector2 x = box.transform.position - currPos;
-            if (x.magnitude < closest.magnitude)
-            {
-                closest = x;
-                closestBox = box;
+        var nearestBox = Level.Current.FindNearestBox(transform.position);
+
+        if (nearestBox != null && Level.Current.IsBoxPickable(nearestBox)) {
+            var dis = (transform.position - nearestBox.transform.position).magnitude;
+            if (dis <= pickupRange) {
+                PickupBox(nearestBox);
             }
-        }
-        if (closest.magnitude < pickupRange)
-        {
-            closestBox.GetComponent<BoxScript>().pickMeUp();
-            pm.isHolding(true);
         }
     }
 }
