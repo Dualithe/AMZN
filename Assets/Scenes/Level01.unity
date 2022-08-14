@@ -217,7 +217,7 @@ RectTransform:
   m_Children:
   - {fileID: 1333739249}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -270,7 +270,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &57878418
 MonoBehaviour:
@@ -310,7 +310,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8062563857732716680, guid: b48f6faed9df8564cab835cdfd353a60, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8062563857732716680, guid: b48f6faed9df8564cab835cdfd353a60, type: 3}
       propertyPath: m_LocalPosition.x
@@ -447,6 +447,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5390853326817833791, guid: 8cd03f82669e56b4683f1c85b8778d08, type: 3}
   m_PrefabInstance: {fileID: 307453686721660546}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &883690473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 883690475}
+  - component: {fileID: 883690474}
+  m_Layer: 0
+  m_Name: TimerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &883690474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883690473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b36e48c3e336d4898ecf73816d65ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &883690475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883690473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5109299, y: -0.13599843, z: 0.045986656}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1333739249 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4478290813883474355, guid: 973f98698453d3349bc42b56a304c73d, type: 3}
@@ -461,7 +505,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4261082837904392290, guid: 8cd03f82669e56b4683f1c85b8778d08, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4261082837904392290, guid: 8cd03f82669e56b4683f1c85b8778d08, type: 3}
       propertyPath: m_LocalPosition.x
@@ -522,7 +566,7 @@ PrefabInstance:
       objectReference: {fileID: 639895030}
     - target: {fileID: 5471972439509896212, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5471972439509896212, guid: ba89ee9cdb02f034a88b49ca1a9c7c96, type: 3}
       propertyPath: m_LocalPosition.x
@@ -579,7 +623,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8062563857732716680, guid: b48f6faed9df8564cab835cdfd353a60, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8062563857732716680, guid: b48f6faed9df8564cab835cdfd353a60, type: 3}
       propertyPath: m_LocalPosition.x
@@ -640,7 +684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4369275224161632175, guid: fec03400780969c43b1bd87e3048b6fa, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4369275224161632175, guid: fec03400780969c43b1bd87e3048b6fa, type: 3}
       propertyPath: m_LocalPosition.x
