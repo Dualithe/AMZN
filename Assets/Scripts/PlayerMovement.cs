@@ -19,13 +19,16 @@ public class PlayerMovement : MonoBehaviour, IKnockbackable
 
     private void Start() {
         ih = GameObject.FindWithTag("InputHandler").GetComponent<InputHandler>();
+
+        // register input
+
     }
 
     private void FixedUpdate()
     {
         moveDirection = new Vector2(
-            ih.MoveRight.ReadValue<float>() - ih.MoveLeft.ReadValue<float>(), 
-            ih.MoveUp.ReadValue<float>() - ih.MoveDown.ReadValue<float>()
+            ih.event_MoveRight.ReadValue<float>() - ih.event_MoveLeft.ReadValue<float>(), 
+            ih.event_MoveUp.ReadValue<float>() - ih.event_MoveDown.ReadValue<float>()
         );
 
         rb.velocity = moveDirection * playerSpeed;

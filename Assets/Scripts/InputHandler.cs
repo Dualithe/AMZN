@@ -3,57 +3,38 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
     public PlayerControls inputActions;
-    public InputAction MoveUp;
-    public InputAction MoveDown;
-    public InputAction MoveLeft;
-    public InputAction MoveRight;
-    public InputAction Throw;
-    public InputAction Pickup;
+    public InputAction event_MoveUp;
+    public InputAction event_MoveDown;
+    public InputAction event_MoveLeft;
+    public InputAction event_MoveRight;
+    public InputAction event_Throw;
+    public InputAction event_Pickup;
 
+    private static InputHandler instance;
+    public static InputHandler Instance => instance;
+ 
     private void Awake()
     {
         inputActions = new PlayerControls();
+
+        instance = this;
+
+        event_MoveUp = inputActions.KeyboardMouse.MoveUp;
+        event_MoveDown = inputActions.KeyboardMouse.MoveDown;
+        event_MoveLeft = inputActions.KeyboardMouse.MoveLeft;
+        event_MoveRight = inputActions.KeyboardMouse.MoveRight;
+        event_Pickup = inputActions.KeyboardMouse.Pickup;
+        event_Throw = inputActions.KeyboardMouse.Throw;
     }
 
     private void OnEnable()
     {
-        MoveUp = inputActions.KeyboardMouse.MoveUp;
-        MoveUp.Enable();
-
-        MoveDown = inputActions.KeyboardMouse.MoveDown;
-        MoveDown.Enable();
-
-        MoveLeft = inputActions.KeyboardMouse.MoveLeft;
-        MoveLeft.Enable();
-
-        MoveRight = inputActions.KeyboardMouse.MoveRight;
-        MoveRight.Enable();
-
-        Pickup = inputActions.KeyboardMouse.Pickup;
-        Pickup.Enable();
-        Pickup.performed += player.GetComponent<PlayerThrowable>().performPickup;
-
-        Throw = inputActions.KeyboardMouse.Throw;
-        Throw.Enable();
-        Throw.started += player.GetComponent<PlayerThrowable>().performAim;
-        Throw.canceled += player.GetComponent<PlayerThrowable>().performThrow;
+        inputActions.Enable();
     }
 
     private void OnDisable()
     {
-        MoveUp.Disable();
-        MoveDown.Disable();
-        MoveLeft.Disable();
-        MoveRight.Disable();
-        Throw.Disable();
-        Pickup.Disable();
-        if (player != null)
-        {
-            Throw.started -= player.GetComponent<PlayerThrowable>().performAim;
-            Throw.canceled -= player.GetComponent<PlayerThrowable>().performThrow;
-            Pickup.performed -= player.GetComponent<PlayerThrowable>().performPickup;
-        }
+        inputActions.Disable();
     }
 }

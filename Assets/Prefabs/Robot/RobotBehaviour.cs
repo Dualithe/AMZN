@@ -67,7 +67,9 @@ public partial class RobotBehaviour : MonoBehaviour
         public override void OnStateEntered() {
             targetBox = Level.Current.FindNearestBox(robot.transform.position);
             Timer.StartTimer(this, 1.5f, () => {
-                targetBox = Level.Current.FindNearestBox(robot.transform.position);
+                if (robot != null) {
+                    targetBox = Level.Current.FindNearestBox(robot.transform.position);
+                }
             });
             
         }
@@ -86,6 +88,7 @@ public partial class RobotBehaviour : MonoBehaviour
             }
             else {
                 agent.isStopped = true;
+                targetBox = Level.Current.FindNearestBox(robot.transform.position);
             }
         }
     }
@@ -124,7 +127,9 @@ public partial class RobotBehaviour : MonoBehaviour
                 var vel = vecToPlayer.normalized * 16.0f;
                 robot.ThrowBox(vel);
                 Timer.StartOneshotTimer(this, 0.3f, () => {    
-                    robot.machine.ChangeState(new State_RobotWalkToBox(robot));
+                    if (robot != null) {
+                        robot.machine.ChangeState(new State_RobotWalkToBox(robot));
+                    }
                 });
             });
         }

@@ -11,6 +11,7 @@ public class Level : MonoBehaviour
     [SerializeField] private PlayerMovement player;
     [SerializeField] private BoxScript boxPrefab;
     [SerializeField] private Transform boxesParent;
+    [SerializeField] private NavMeshSurface navMesh;
 
     private List<BoxScript> boxList = new();
 
@@ -19,6 +20,7 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
+        navMesh.BuildNavMesh();
         UpdateBoxList();
     }
 

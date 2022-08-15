@@ -17,6 +17,18 @@ public class PlayerThrowable : MonoBehaviour
         hands.gameObject.SetActive(false);
     }
 
+    private void OnEnable() { 
+        InputHandler.Instance.event_Pickup.performed += performPickup;
+        InputHandler.Instance.event_Throw.started += performAim;
+        InputHandler.Instance.event_Throw.canceled += performThrow;
+    }
+
+    private void OnDisable() {
+        InputHandler.Instance.event_Pickup.performed -= performPickup;
+        InputHandler.Instance.event_Throw.started -= performAim;
+        InputHandler.Instance.event_Throw.canceled -= performThrow;
+    }
+
     public void PickupBox(BoxScript box) {
         pickedUpBox = box;
         hands.gameObject.SetActive(true);
