@@ -9,6 +9,7 @@ TagManager:
   - Lever
   - PressurePlate
   - ShelfModule
+  - Robot
   layers:
   - Default
   - TransparentFX

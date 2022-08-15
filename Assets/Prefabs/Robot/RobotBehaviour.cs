@@ -63,12 +63,19 @@ public partial class RobotBehaviour : MonoBehaviour
         public State_RobotWalkToBox(RobotBehaviour robot) { this.robot = robot; }
 
         private BoxScript targetBox = null;
+        private GameObject targetPlate = null;
 
         public override void OnStateEntered() {
             targetBox = Level.Current.FindNearestBox(robot.transform.position);
+            if (targetBox == null || !Level.Current.IsBoxPickable(targetBox)) {
+                targetPlate = Level.Current.FindPressurePlate(robot.transform.position);
+            }
             Timer.StartTimer(this, 1.5f, () => {
                 if (robot != null) {
                     targetBox = Level.Current.FindNearestBox(robot.transform.position);
+                    if (targetBox == null || !Level.Current.IsBoxPickable(targetBox)) {
+                        targetPlate = Level.Current.FindPressurePlate(robot.transform.position);
+                    }
                 }
             });
             
@@ -86,9 +93,12 @@ public partial class RobotBehaviour : MonoBehaviour
                     robot.machine.ChangeState(new State_RobotGoToPlayer(robot));
                 }
             }
+            else if (targetPlate != null) {
+                agent.isStopped = false;
+                agent.SetDestination(targetPlate.transform.position);
+            }
             else {
                 agent.isStopped = true;
-                targetBox = Level.Current.FindNearestBox(robot.transform.position);
             }
         }
     }

@@ -65,7 +65,7 @@ public class Level : MonoBehaviour
 
     public BoxScript FindNearestBox(Vector2 fromPos)
     {
-        var boxes = Level.Current.Boxes;
+        var boxes = Boxes;
         var minBox = boxes.FirstOrDefault();
         var minDis = float.MaxValue;
 
@@ -83,6 +83,28 @@ public class Level : MonoBehaviour
             }
         }
         return minBox;
+    }
+
+    public GameObject FindPressurePlate(Vector2 fromPos)
+    {
+        var plates = GameObject.FindGameObjectsWithTag("PressurePlate");
+        var minPlate = plates.FirstOrDefault();
+        var minDis = float.MaxValue;
+
+        foreach (var plate in plates)
+        {
+            if (plate)
+            {
+                var vec = (Vector2)plate.transform.position - fromPos;
+                var dis = vec.sqrMagnitude;
+                if (dis < minDis)
+                {
+                    minPlate = plate;
+                    minDis = dis;
+                }
+            }
+        }
+        return minPlate;
     }
 
     public bool IsBoxPickable(BoxScript box)
