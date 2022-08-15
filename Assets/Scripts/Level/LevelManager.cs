@@ -128,7 +128,7 @@ public class LevelManager : MonoBehaviour
         var allShelfs = GameObject.FindGameObjectsWithTag("ShelfModule").Select(shelf => shelf.GetComponent<ShelfModule>());
         foreach (var shelf in allShelfs) {
             if (!shelf.IsFilled) {
-                break;
+                return;
             }
         }
         completionTime = currentLevel.CompletionTime;

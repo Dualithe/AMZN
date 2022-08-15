@@ -286,6 +286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f5b0a5b636d0c48a3dbf75a8904835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeRequiredForStars:
+  - 120
+  - 92
+  - 70
   player: {fileID: 7260679152422097606}
   boxPrefab: {fileID: 2977546638607009467, guid: 1d5da02d32f5aab48be09b085f68e1e5, type: 3}
   boxesParent: {fileID: 364293992394956248}
