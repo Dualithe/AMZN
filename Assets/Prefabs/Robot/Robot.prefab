@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 2264865387702546383}
   - component: {fileID: 8093830567128610342}
   - component: {fileID: 4734322851279485435}
+  - component: {fileID: 1459132418385404615}
   m_Layer: 7
   m_Name: Robot
   m_TagString: Robot
@@ -289,6 +290,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &1459132418385404615
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8346918363841182594}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a50576f457f17248b55a89f53e829bf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8767834212252269977
 GameObject:
   m_ObjectHideFlags: 0

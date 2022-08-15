@@ -84,6 +84,7 @@ public partial class RobotBehaviour : MonoBehaviour
         public override void OnStateUpdate() {
             var agent = robot.GetComponent<NavMeshAgent>();
             if (targetBox != null && Level.Current.IsBoxPickable(targetBox)) {
+                robot.GetComponent<Animator>().Play("RobotAnimation_Walk");
                 agent.isStopped = false;
                 agent.SetDestination(targetBox.transform.position);
 
@@ -95,10 +96,12 @@ public partial class RobotBehaviour : MonoBehaviour
             }
             else if (targetPlate != null) {
                 agent.isStopped = false;
+                robot.GetComponent<Animator>().Play("RobotAnimation_Walk");
                 agent.SetDestination(targetPlate.transform.position);
             }
             else {
                 agent.isStopped = true;
+                robot.GetComponent<Animator>().Play("RobotAnimation_Idle");
             }
         }
     }
@@ -129,6 +132,7 @@ public partial class RobotBehaviour : MonoBehaviour
 
         public override void OnStateEntered() {
             var agent = robot.GetComponent<NavMeshAgent>();
+            robot.GetComponent<Animator>().Play("RobotAnimation_Idle");
             agent.isStopped = true;
 
             Timer.StartOneshotTimer(this, 0.3f, () => {
