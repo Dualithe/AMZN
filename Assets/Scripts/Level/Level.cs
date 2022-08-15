@@ -6,8 +6,7 @@ using System.Linq;
 
 public class Level : MonoBehaviour
 {
-    private static Level instance;
-    public static Level Current => instance;
+    public static Level Current => LevelManager.Instance.CurrentLevel;
 
     [SerializeField] private PlayerMovement player;
     [SerializeField] private BoxScript boxPrefab;
@@ -15,17 +14,12 @@ public class Level : MonoBehaviour
 
     private List<BoxScript> boxList = new();
 
-    public PlayerMovement Player => instance.player;
+    public PlayerMovement Player => player;
     public IReadOnlyList<BoxScript> Boxes => boxList;
 
     private void Start()
     {
         UpdateBoxList();
-    }
-
-    private void Awake()
-    {
-        instance = this;
     }
 
     public void UpdateBoxList()
