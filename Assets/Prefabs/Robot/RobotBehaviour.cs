@@ -43,6 +43,7 @@ public partial class RobotBehaviour : MonoBehaviour
         Level.Current.ReturnBox(box);
         box.GetComponent<Collider2D>().enabled = true;
         box.body.velocity = velocity;
+        box.wasThrown = true;
 
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), box.GetComponent<Collider2D>(), true);
         Timer.StartOneshotTimer(this, 0.3f, () => {

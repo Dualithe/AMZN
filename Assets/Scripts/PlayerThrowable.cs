@@ -11,7 +11,7 @@ public class PlayerThrowable : MonoBehaviour
     [SerializeField] private GameObject rangeIndicator;
     [SerializeField] private Transform hands;
     [SerializeField] private Transform boxHandler;
-    private BoxScript pickedUpBox = null;
+    public BoxScript pickedUpBox = null;
 
     private void Start() {
         hands.gameObject.SetActive(false);

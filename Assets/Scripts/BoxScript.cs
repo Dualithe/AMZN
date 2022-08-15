@@ -10,6 +10,7 @@ public class BoxScript : MonoBehaviour, IKnockbackable
     private bool isDestroyed = false;
     private bool tweening = false;
     private float tweenCD;
+    public bool wasThrown = false;
     private Vector3 scale;
 
     private void Awake()
@@ -20,6 +21,11 @@ public class BoxScript : MonoBehaviour, IKnockbackable
 
     private void Update()
     {
+        if (rb.velocity.magnitude == 0)
+        {
+            wasThrown = false;
+        }
+
         if (tweening)
         {
             tweenCD -= Time.deltaTime;
@@ -46,6 +52,10 @@ public class BoxScript : MonoBehaviour, IKnockbackable
         {
             isDestroyed = true;
             shelfModule.fill(gameObject);
+        }
+        if (collision.transform.tag == "Player" && wasThrown == true && collision.gameObject.GetComponent<PlayerThrowable>().pickedUpBox != null)
+        {
+            collision.gameObject.GetComponent<PlayerThrowable>().ThrowBox((collision.transform.position - transform.position).normalized * 8f);
         }
         if (!tweening)
         {
