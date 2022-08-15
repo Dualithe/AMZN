@@ -216,7 +216,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5390853326817833791}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -228,7 +228,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &630861326996530574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407fa184a6ea1ef44b65ac4c9d2a52b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 3
+  playerSpeed: 4
 --- !u!114 &8264679579654301324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 801e8130c08362243a3c2d2fd9cfbb93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwForce: 12
+  throwForce: 18
   pickupRange: 2
   rangeIndicator: {fileID: 2235250496221347143}
   hands: {fileID: 3653361508741709016}

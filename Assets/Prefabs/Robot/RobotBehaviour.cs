@@ -120,7 +120,7 @@ public partial class RobotBehaviour : MonoBehaviour
             Timer.StartOneshotTimer(this, 0.3f, () => {
                 var player = Level.Current.Player;
                 var vecToPlayer = player.transform.position - robot.boxHandler.transform.position;
-                var vel = vecToPlayer.normalized * 12.0f;
+                var vel = vecToPlayer.normalized * 16.0f;
                 robot.ThrowBox(vel);
                 Timer.StartOneshotTimer(this, 0.3f, () => {    
                     robot.machine.ChangeState(new State_RobotWalkToBox(robot));
