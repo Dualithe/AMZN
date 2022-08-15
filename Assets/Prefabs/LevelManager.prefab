@@ -48,7 +48,14 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   hud: {fileID: 0}
   levelPrefabs:
+  - {fileID: 364293992767624928, guid: 629dba739784b5b4eae09d9be23030af, type: 3}
   - {fileID: 364293992767624928, guid: 8790c2f187f01e14d9a7b6a0fc24f099, type: 3}
   - {fileID: 364293992767624928, guid: 4a9786be58f1bb24fb555aedbd3913f8, type: 3}
   - {fileID: 364293992767624928, guid: f6d5121abfe66ee48bf0b03ac3175792, type: 3}
+  - {fileID: 364293992767624928, guid: ac18de150170fda43a831b3619455c9c, type: 3}
+  - {fileID: 364293992767624928, guid: d609b05fd3f8d164ab05c86ad4d6664c, type: 3}
+  - {fileID: 364293992767624928, guid: aee205fcbb116c549986a9489e3a74a2, type: 3}
+  - {fileID: 364293992767624928, guid: 2161aa1189e3fe34cbf608e752913f70, type: 3}
+  - {fileID: 364293992767624928, guid: 630601934444ddd48b87dc5418cfe2fe, type: 3}
+  - {fileID: 364293992767624928, guid: 78a1d2fafc158d14ab434e099e773426, type: 3}
   currentLevelText: {fileID: 0}
