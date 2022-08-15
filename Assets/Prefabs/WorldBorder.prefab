@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sampleWall: {fileID: 4606462171214664700, guid: ef5aee07d88e9cc45a9ea23dd305c82f, type: 3}
-  wallWidth: 1
+  wallWidth: 2
