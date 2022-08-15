@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     private void UpdateUI() {
         currentLevelText.gameObject.SetActive(currentLevel != null);
         if (currentWindow == WindowType.Level) {
-            currentLevelText.text = $"Level {1}";
+            currentLevelText.text = $"Level {currentLevelId + 1}";
         }
         hud.gameObject.SetActive(currentWindow == WindowType.Level);
         mainMenu.gameObject.SetActive(currentWindow == WindowType.MainMenu);
