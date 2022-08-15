@@ -36,7 +36,7 @@ public class BoxScript : MonoBehaviour, IKnockbackable
 
     private void OnDestroy()
     {
-        Level.Current.UpdateBoxList();
+        Level.Current?.UpdateBoxList();
     }
 
     public void Knockback(Vector2 dir, float force)

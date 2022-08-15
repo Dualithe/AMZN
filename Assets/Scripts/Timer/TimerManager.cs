@@ -10,6 +10,10 @@ public class TimerManager : MonoBehaviour
     private static TimerManager instance;
     public static TimerManager Instance => instance;
 
+    public void RemoveAllTimers() {
+        timers.Clear();
+    }
+
     private void Awake() {
         if (instance == null) {
             instance = this;

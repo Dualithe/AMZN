@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
+using TMPro;
 
 public class Level : MonoBehaviour
 {
     public static Level Current => LevelManager.Instance.CurrentLevel;
 
+    public List<float> timeRequiredForStars = new List<float>(4);
+
+    [Space]
     [SerializeField] private PlayerMovement player;
     [SerializeField] private BoxScript boxPrefab;
     [SerializeField] private Transform boxesParent;
@@ -18,10 +22,21 @@ public class Level : MonoBehaviour
     public PlayerMovement Player => player;
     public IReadOnlyList<BoxScript> Boxes => boxList;
 
+    private float startTime = 0.0f;
+    private float time = 0.0f;
+
+    public float CompletionTime => time;
+
     private void Start()
     {
+        time = 0.0f;
+        startTime = Time.time;
         navMesh.BuildNavMesh();
         UpdateBoxList();
+    }
+
+    public void Update() {
+        time = Time.time - startTime;
     }
 
     public void UpdateBoxList()
