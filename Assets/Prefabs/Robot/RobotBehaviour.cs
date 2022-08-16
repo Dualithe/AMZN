@@ -60,25 +60,36 @@ public partial class RobotBehaviour : MonoBehaviour
     public class State_RobotWalkToBox : StateBase {
         
         private RobotBehaviour robot;
-        public State_RobotWalkToBox(RobotBehaviour robot) { this.robot = robot; }
+        private List<BoxScript> excludedBoxes;
+        public State_RobotWalkToBox(RobotBehaviour robot, List<BoxScript> excludedBoxes = null) { 
+            this.robot = robot; 
+            this.excludedBoxes = excludedBoxes ?? new List<BoxScript>();    
+        }
 
         private BoxScript targetBox = null;
         private GameObject targetPlate = null;
 
         public override void OnStateEntered() {
-            targetBox = Level.Current.FindNearestBox(robot.transform.position);
+            targetBox = Level.Current.FindRandomBox(robot.transform.position, excludedBoxes);
             if (targetBox == null || !Level.Current.IsBoxPickable(targetBox)) {
                 targetPlate = Level.Current.FindPressurePlate(robot.transform.position);
             }
             Timer.StartTimer(this, 1.5f, () => {
                 if (robot != null) {
-                    targetBox = Level.Current.FindNearestBox(robot.transform.position);
                     if (targetBox == null || !Level.Current.IsBoxPickable(targetBox)) {
+                        targetBox = Level.Current.FindRandomBox(robot.transform.position, excludedBoxes);
+                        if (targetBox == null || !Level.Current.IsBoxPickable(targetBox)) {
+                            targetPlate = Level.Current.FindPressurePlate(robot.transform.position);
+                        }
+                    }
+                    else {                        
                         targetPlate = Level.Current.FindPressurePlate(robot.transform.position);
                     }
                 }
             });
-            
+            Timer.StartOneshotTimer(this, 1.0f, () => {
+                excludedBoxes.Clear();
+            });        
         }
 
         public override void OnStateUpdate() {
@@ -98,8 +109,25 @@ public partial class RobotBehaviour : MonoBehaviour
                 agent.isStopped = false;
                 robot.GetComponent<Animator>().Play("RobotAnimation_Walk");
                 agent.SetDestination(targetPlate.transform.position);
+
+                var dis = (robot.transform.position - targetPlate.transform.position).magnitude;
+                if (dis < 0.1f) {
+                    targetBox = Level.Current.FindNearestBox(robot.transform.position, excludedBoxes);
+                    if (targetBox != null) {
+                        targetPlate = Level.Current.FindPressurePlate(robot.transform.position, new () {targetPlate});    
+                        if (targetPlate == null) {
+                            agent.SetDestination(Level.Current.Player.transform.position);
+                        }
+                    }
+                }
             }
             else {
+                if (!agent.isStopped) {   
+                    targetBox = Level.Current.FindRandomBox(robot.transform.position, excludedBoxes);
+                    if (targetBox == null || !Level.Current.IsBoxPickable(targetBox)) {
+                        targetPlate = Level.Current.FindPressurePlate(robot.transform.position);
+                    }
+                }
                 agent.isStopped = true;
                 robot.GetComponent<Animator>().Play("RobotAnimation_Idle");
             }
@@ -135,14 +163,15 @@ public partial class RobotBehaviour : MonoBehaviour
             robot.GetComponent<Animator>().Play("RobotAnimation_Idle");
             agent.isStopped = true;
 
-            Timer.StartOneshotTimer(this, 0.3f, () => {
+            Timer.StartOneshotTimer(this, 0.05f, () => {
                 var player = Level.Current.Player;
                 var vecToPlayer = player.transform.position - robot.boxHandler.transform.position;
                 var vel = vecToPlayer.normalized * 16.0f;
+                var throwedBox = robot.pickedUpBox;
                 robot.ThrowBox(vel);
-                Timer.StartOneshotTimer(this, 0.3f, () => {    
+                Timer.StartOneshotTimer(this, 0.05f, () => {
                     if (robot != null) {
-                        robot.machine.ChangeState(new State_RobotWalkToBox(robot));
+                        robot.machine.ChangeState(new State_RobotWalkToBox(robot, new() {throwedBox}));
                     }
                 });
             });

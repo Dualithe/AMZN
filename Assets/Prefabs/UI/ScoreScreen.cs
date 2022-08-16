@@ -9,6 +9,7 @@ public class ScoreScreen : MonoBehaviour
     [SerializeField] private List<StarIcon> stars;
     [SerializeField] private List<TMP_Text> timeRequiredTexts;
     [SerializeField] private TMP_Text completionTimeText;
+    [SerializeField] private TMP_Text levelText;
 
     private void Start() {
         foreach (var star in stars) {
@@ -28,11 +29,12 @@ public class ScoreScreen : MonoBehaviour
         LevelManager.Instance.ChangeToNextLevel();
     }
 
-    public void SetupWindow(float completionTime, List<float> timesRequiredForStars) {
+    public void SetupWindow(float completionTime, List<float> timesRequiredForStars, int levelId) {
         for (var i = 0; i < timesRequiredForStars.Count; ++i) {
-            timeRequiredTexts[i].text = timesRequiredForStars[i].ToString("0.00");
+            timeRequiredTexts[i].text = timesRequiredForStars[i].ToString("0.00s");
         }
-        completionTimeText.text = completionTime.ToString("0.00");
+        completionTimeText.text = completionTime.ToString("0.00s");
+        levelText.text = $"Level {levelId + 1}";
     }
 
     public void PlayAnimation(int starsAmount) {

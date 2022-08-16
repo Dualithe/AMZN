@@ -10,6 +10,8 @@ public class pressurePlateHandler : MonoBehaviour
     private float cd;
     private bool colliding = false;
 
+    private HashSet<Transform> overlapingEntities = new();
+
     private void Start()
     {
         cd = spawnBoxCooldown;
@@ -19,34 +21,35 @@ public class pressurePlateHandler : MonoBehaviour
     {
         if (cd == 0 && (collision.transform.tag == "Player" || collision.transform.tag == "Robot"))
         {
+            overlapingEntities.Add(collision.transform);
             spawnBox();
         }
-        colliding = true;
         animator.SetBool("IsOn", false);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        cd = spawnBoxCooldown;
-        colliding = false;
+        overlapingEntities.Remove(collision.transform);
     }
 
     private void Update()
     {
-        if (colliding == false)
-        {
-            cd -= Time.deltaTime;
-            cd = Mathf.Max(cd, 0);
+        if (cd > 0) {
+            cd = Mathf.Max(cd - Time.deltaTime, 0);
+            if (cd == 0 && overlapingEntities.Count > 0) {
+                spawnBox();
+            }
         }
     }
 
     private void spawnBox()
     {
-        var spawnAngle = Random.Range(0, 2 * Mathf.PI);
-        var spawnDistance = Random.Range(0, spawnBoxRange);
-        Vector2 spawnVec = new Vector2(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle));
-        Level.Current.SpawnBox((Vector2)transform.position + spawnVec * spawnDistance);
-        // Instantiate(box, ((spawnVec * spawnDistance) + thisPos), Quaternion.identity);
+        if (cd <= 0) {
+            var spawnAngle = Random.Range(0, 2 * Mathf.PI);
+            var spawnDistance = Random.Range(0, spawnBoxRange);
+            Vector2 spawnVec = new Vector2(Mathf.Cos(spawnAngle), Mathf.Sin(spawnAngle));
+            Level.Current.SpawnBox((Vector2)transform.position + spawnVec * spawnDistance);
+        }
     }
     private void OnDrawGizmos()
     {

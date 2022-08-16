@@ -10,6 +10,7 @@ public class InputHandler : MonoBehaviour
     public InputAction event_MoveRight;
     public InputAction event_Throw;
     public InputAction event_Pickup;
+    public InputAction event_BackToMenu;
 
     private static InputHandler instance;
     public static InputHandler Instance => instance;
@@ -26,6 +27,7 @@ public class InputHandler : MonoBehaviour
         event_MoveRight = inputActions.KeyboardMouse.MoveRight;
         event_Pickup = inputActions.KeyboardMouse.Pickup;
         event_Throw = inputActions.KeyboardMouse.Throw;
+        event_BackToMenu = inputActions.KeyboardMouse.BackToMenu;
     }
 
     private void OnEnable()

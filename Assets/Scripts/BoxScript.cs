@@ -32,6 +32,29 @@ public class BoxScript : MonoBehaviour, IKnockbackable
             tweenCD = Mathf.Max(tweenCD, 0);
             tweening = tweenCD >= 0f ? true : false;
         }
+
+        if (transform.position.x < -13.5) {
+            var pos = rb.transform.position;
+            pos.x = -13.5f;
+            rb.transform.position = pos;
+        }
+        else if (transform.position.x > 13.5) {
+            var pos = rb.transform.position;
+            pos.x = 13.5f;
+            rb.transform.position = pos;
+        }
+
+        if (transform.position.y < -8.0) {
+            var pos = rb.transform.position;
+            pos.y = -8.0f;
+            rb.transform.position = pos;
+        }
+        else if (transform.position.y > 8.0) {
+            var pos = rb.transform.position;
+            pos.y = 8.0f;
+            rb.transform.position = pos;
+        }
+
     }
 
     private void OnDestroy()

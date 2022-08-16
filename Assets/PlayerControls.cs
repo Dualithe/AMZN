@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BackToMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4429846-af24-4375-bff1-dbc935b8c782"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -148,6 +157,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Pickup"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd75ed34-66e1-4af2-a23c-8f07b6fcf72c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BackToMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -168,6 +188,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_KeyboardMouse_MoveRight = m_KeyboardMouse.FindAction("MoveRight", throwIfNotFound: true);
         m_KeyboardMouse_Throw = m_KeyboardMouse.FindAction("Throw", throwIfNotFound: true);
         m_KeyboardMouse_Pickup = m_KeyboardMouse.FindAction("Pickup", throwIfNotFound: true);
+        m_KeyboardMouse_BackToMenu = m_KeyboardMouse.FindAction("BackToMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -233,6 +254,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_KeyboardMouse_MoveRight;
     private readonly InputAction m_KeyboardMouse_Throw;
     private readonly InputAction m_KeyboardMouse_Pickup;
+    private readonly InputAction m_KeyboardMouse_BackToMenu;
     public struct KeyboardMouseActions
     {
         private @PlayerControls m_Wrapper;
@@ -243,6 +265,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MoveRight => m_Wrapper.m_KeyboardMouse_MoveRight;
         public InputAction @Throw => m_Wrapper.m_KeyboardMouse_Throw;
         public InputAction @Pickup => m_Wrapper.m_KeyboardMouse_Pickup;
+        public InputAction @BackToMenu => m_Wrapper.m_KeyboardMouse_BackToMenu;
         public InputActionMap Get() { return m_Wrapper.m_KeyboardMouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -270,6 +293,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pickup.started -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnPickup;
                 @Pickup.performed -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnPickup;
                 @Pickup.canceled -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnPickup;
+                @BackToMenu.started -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnBackToMenu;
+                @BackToMenu.performed -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnBackToMenu;
+                @BackToMenu.canceled -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnBackToMenu;
             }
             m_Wrapper.m_KeyboardMouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -292,6 +318,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Pickup.started += instance.OnPickup;
                 @Pickup.performed += instance.OnPickup;
                 @Pickup.canceled += instance.OnPickup;
+                @BackToMenu.started += instance.OnBackToMenu;
+                @BackToMenu.performed += instance.OnBackToMenu;
+                @BackToMenu.canceled += instance.OnBackToMenu;
             }
         }
     }
@@ -313,5 +342,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMoveRight(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnPickup(InputAction.CallbackContext context);
+        void OnBackToMenu(InputAction.CallbackContext context);
     }
 }

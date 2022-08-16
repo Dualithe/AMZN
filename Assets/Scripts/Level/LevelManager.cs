@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private ScoreScreen scoreScreen;
     [SerializeField] private List<Level> levelPrefabs;
     [SerializeField] private TMP_Text timerText;
+    [SerializeField] private TMP_Text currentLevelText;
+    [SerializeField] private List<LevelButton> levelButtons;
+    [Space]
 
     private Level currentLevel = null;
     public Level CurrentLevel => currentLevel;
@@ -27,13 +30,17 @@ public class LevelManager : MonoBehaviour
     private static LevelManager instance;
     public static LevelManager Instance => instance;
 
-    [Space]
-    [SerializeField] private TMP_Text currentLevelText;
+    private List<int> currentScoresForLevels = new();
 
     private void UpdateUI() {
         currentLevelText.gameObject.SetActive(currentLevel != null);
         if (currentWindow == WindowType.Level) {
             currentLevelText.text = $"Level {currentLevelId + 1}";
+        }
+        else if (currentWindow == WindowType.MainMenu) {
+            for (int i = 0; i < levelButtons.Count; ++i) {
+                levelButtons[i].SetupStars(currentScoresForLevels[i]);
+            }
         }
         hud.gameObject.SetActive(currentWindow == WindowType.Level);
         mainMenu.gameObject.SetActive(currentWindow == WindowType.MainMenu);
@@ -42,18 +49,18 @@ public class LevelManager : MonoBehaviour
 
     private void Update() {
         if (currentLevel != null) {
-            timerText.text = currentLevel.CompletionTime.ToString("0.00");
+            timerText.text = currentLevel.CompletionTime.ToString("0.00s");
         }
     }
 
     private void Awake() {
+        currentScoresForLevels = levelPrefabs.Select(_ => -1).ToList();
         if (instance == null) {
             instance = this;
         }
         currentLevel = levelHandler.childCount > 0 ? levelHandler.GetChild(0).GetComponent<Level>() : null;
         currentLevelId = levelHandler.childCount > 0 ? 0 : -1;
         currentWindow = CurrentLevel != null ? WindowType.Level : WindowType.MainMenu;
-        UpdateUI();
     }
 
     public void Start() {
@@ -79,7 +86,7 @@ public class LevelManager : MonoBehaviour
             return;
         }
         
-        scoreScreen.SetupWindow(completionTime, currentLevel.timeRequiredForStars);
+        scoreScreen.SetupWindow(completionTime, currentLevel.timeRequiredForStars, currentLevelId);
 
         var starsEarned = 0;
         foreach (var time in currentLevel.timeRequiredForStars) {
@@ -90,6 +97,8 @@ public class LevelManager : MonoBehaviour
                 break;
             }
         }
+
+        currentScoresForLevels[currentLevelId] = starsEarned;
 
         // Debug.Log(starsEarned);
 

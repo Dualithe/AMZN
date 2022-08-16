@@ -33,6 +33,20 @@ public class PlayerMovement : MonoBehaviour, IKnockbackable
 
         rb.velocity = moveDirection * playerSpeed;
 
+        if (rb.velocity.x < 0.0 && transform.position.x < -14.0) {
+            rb.velocity *= Vector2.up;
+        }
+        else if (rb.velocity.x > 0.0 && transform.position.x > 14.0) {
+            rb.velocity *= Vector2.up;
+        }
+
+        if (rb.velocity.y < 0.0 && transform.position.y < -8.0) {
+            rb.velocity *= Vector2.right;
+        }
+        else if (rb.velocity.y > 0.0 && transform.position.y > 8.0) {
+            rb.velocity *= Vector2.right;
+        }
+
         var isRunning = Mathf.Abs(moveDirection.x) > 0 || Mathf.Abs(moveDirection.y) > 0;
         playerAnimator.SetBool("IsRunning", isRunning);
     }
